@@ -35,6 +35,6 @@ Show count of employee for {department_name}.
 <ins>User input</ins>:  
 Global search by {template}.  
 <ins>Example</ins>:  
-Global search by van  
+Global search by **van**  
 <ins>App output</ins>:  
-Ivan Petrenko, Petro Ivanenko  
+I**van** Petrenko, Petro I**van**enko  
