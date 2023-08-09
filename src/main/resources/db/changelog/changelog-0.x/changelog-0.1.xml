@@ -1,0 +1,74 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <changeSet id="1691399017" author="Danylo">
+    <createSequence
+            sequenceName="department_sequence"
+            startValue="1"
+            incrementBy="5" />
+  </changeSet>
+
+  <changeSet id="1691407307" author="Danylo">
+    <createSequence
+            sequenceName="lector_sequence"
+            startValue="1"
+            incrementBy="5" />
+  </changeSet>
+
+  <changeSet id="1691407432" author="Danylo">
+    <createTable tableName="department">
+      <column name="id" type="BIGINT">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints unique="true" nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1691408610" author="Danylo">
+    <sql>CREATE TYPE degrees AS ENUM ('ASSISTANT','ASSOCIATE_PROFESSOR','PROFESSOR');</sql>
+    <createTable tableName="lector">
+      <column name="id" type="BIGINT">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="full_name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="degree" type="DEGREES">
+        <constraints nullable="false"/>
+      </column>
+      <column name="salary" type="FLOAT(53)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1691409118" author="Danylo">
+    <createTable tableName="position">
+      <column name="department_id" type="BIGINT">
+        <constraints primaryKey="true" nullable="false" foreignKeyName="department_fk" references="department"/>
+      </column>
+      <column name="lector_id" type="BIGINT">
+        <constraints primaryKey="true" nullable="false" foreignKeyName="lector_fk" references="lector"/>
+      </column>
+      <column name="is_head" type="BOOLEAN">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1691410529" author="Danylo">
+    <createIndex
+            indexName="department_have_one_head"
+            tableName="position"
+            unique="true">
+      <column name="department_id"/>
+    </createIndex>
+    <modifySql>
+      <append value=" where is_head"/>
+    </modifySql>
+  </changeSet>
+
+</databaseChangeLog>

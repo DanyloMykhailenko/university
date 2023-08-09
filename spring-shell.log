@@ -1,0 +1,168 @@
+1691140123228:get
+1691140343445:example
+1691140482343:get
+1691141085686:help
+1691141112912:version
+1691141514496:mycommand
+1691141537746:get
+1691141545814:example
+1691141620612:mycommand
+1691141972107:so example
+1691142192352:so  working on learning project
+1691142203463:so example
+1691142244496:example
+1691143822679:stacktrace
+1691143887477:example
+1691147419660:add department so
+1691147441891:add department {"name": "asdasd"}
+1691147469187:add department {}
+1691147483346:add department {""}
+1691147564121:add department {asdas: asdasd}
+1691147594437:add department {asdasd asdasd}
+1691147625851:add department
+1691147656150:add department {awdaw awdaw}
+1691147729283:add department {"asdasd": "asdasd"}
+1691147785068:add department {asdas: asdas}
+1691147797185:add department {asd:asd}
+1691147836635:add department {"as":"asd"}
+1691147888148:add department {qqqqqqqqqqqqqqqqqqqqq}
+1691148053292:add department {qwe}
+1691148078550:add department {"asd": "asdy"}
+1691148121013:add department {\\"Scazs\\":\\"asd\\"}
+1691148151327:add department {\\"Scazs\\": \\"asd\\"}
+1691148712076:add department {"asd": "asda"}
+1691148983679:add department {"so": "what"}
+1691149092063:add department
+1691149105198:add department {"ad": "as"}
+1691149527588:add department {asd}
+1691149551836:add department {\\"sdf\\": \\"ss\\"}
+1691387213649:so
+1691387263372:help
+1691387272460:so
+1691387281555:so what
+1691387299742:so '{"login":"my_login","password":"my_password"}'
+1691389357944:add department '{"name":"Biology"}'
+1691391068440:help
+1691391163514:h
+1691391167566:-h
+1691391174646:--h
+1691391177685:help
+1691392200852:add lector 1 '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691392535373:help
+1691392551562:Who is head of department Biology
+1691394104394:help
+1691394147829:Who is head of department Biology
+1691394206336:help
+1691394225517:Who is head of department Biology
+1691422269370:add department '{"name":"Biology"}'
+1691422347052:add department '{"name":"Physic"}'
+1691422391532:add department '{"name":"Chemistry"}'
+1691422452013:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691422489227:stacktrace
+1691422793025:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691422808155:stacktrace
+1691423243021:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691423463195:stacktrace
+1691423593265:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691423626614:stacktrace
+1691423893136:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691423905258:stacktrace
+1691423958864:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691423966949:stacktrace
+1691424207129:add lector to Biology '{"fullName":"James Garrison","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691424566924:add lector to Biology '{"fullName":"Adam Araqua","degree":"ASSISTANT","salary":12.2,"isHead": false}'
+1691424724350:add lector to Biology '{"fullName":"Barry Banaboo","degree":"ASSOCIATE_PROFESSOR","salary":20.2,"isHead": false}'
+1691424783921:add lector to Biology '{"fullName":"Carl Cavis","degree":"PROFESSOR","salary":40.2,"isHead": true}'
+1691425051469:add lector to Physic '{"fullName":"Andros Arapos","degree":"ASSISTANT","salary":10.2,"isHead": false}'
+1691425126042:add lector to Physic '{"fullName":"Bagoopa Banamola","degree":"ASSOCIATE_PROFESSOR","salary":30.2,"isHead": false}'
+1691425187664:add lector to Physic '{"fullName":"Cirtis Calamos","degree":"PROFESSOR","salary":60.2,"isHead": true}'
+1691425279576:add lector to Physic '{"fullName":"Dario Doritos","degree":"PROFESSOR","salary":100.2,"isHead": true}'
+1691425304831:help
+1691474833111:who is head of department Biology
+1691474861403:stacktrace
+1691475136016:who is head of department Biology
+1691475183513:who is head of department Physic
+1691475627971:who is head of department Biology
+1691476292045:who is head of department Physic
+1691482264733:show statistics of Biology
+1691482279879:stacktrace
+1691482974328:show statistics of Biology
+1691482993537:stacktrace
+1691483053067:show statistics of Biology
+1691483166164:stacktrace
+1691483543282:show statistics of Biology
+1691483567535:show statistics of Physic
+1691484000910:show the average salary for the department Biology
+1691485880480:show count of employees for Biology
+1691486457191://language=sql
+1691511013421:global search by Ba
+1691511811404:global search by Ca
+1691511823528:global search by ca
+1691512111734:global search by ba
+1691554409144:add department '{"name":"Math"}'
+1691554467684:add department '{"name":"Computer Science"}'
+1691554545463:add lector to Math '{"fullName":"Aaron Aragava","degree":"ASSISTANT","salary":10.3,"isHead": true}'
+1691554636364:add lector to 'Computer Science' '{"fullName":"Anatoliy Anastasiuk","degree":"ASSISTANT","salary":10.4,"isHead": true}'
+1691554669668:who is head of department Math
+1691554714135:who is head of department 'Computer Science'
+1691554760594:show statistics of 'Computer Science'
+1691554797938:show the average salary for the department 'Computer Science'
+1691554821182:show count of employees for 'Computer Science'
+1691554956194:add department '{"name":"Language"}'
+1691556174334:add department '{"name":"Test"}'
+1691556228599:add department '{"name":"Ttt"}'
+1691556314865:add department '{"name":"Qwerty"}'
+1691556541015:add department '{"name":"Qwsdfs"}'
+1691556579775:add department '{"name":"QWRdcfb"}'
+1691556656456:add department '{"name":"Qweqwe"}'
+1691558162136:add department '{"name":"SSS"}'
+1691559609557:show the average salary for the department Biology
+1691559924264:who is head of department Biology
+1691559937422:show statistics of Biology
+1691559970751:show the average salary for the department Biology
+1691559981836:show count of employees for Biology
+1691560091830:show count of employees for Math
+1691560422836:show the average salary for the department Biologyasf
+1691560486434:show statistics of Biologyzxcz
+1691561236102:show statistics of Math
+1691561324574:show statistics of Biology
+1691561332652:show statistics of Math
+1691561389213:show the average salary for the department Biology
+1691561394263:show the average salary for the department Biologyszs
+1691561412456:stacktrace
+1691561856165:show the average salary for the department Biology
+1691562400964:show the average salary for the department Biologasd
+1691562433272:stacktrace
+1691562660205:show statistics of Biologyzd
+1691562727522:show count of employees for Biology
+1691563185302:show count of employees for Biologyfdg
+1691563217664:show count of employees for Biology
+1691563225744:show count of employees for Biologyasd
+1691563235824:show count of employees for Math
+1691563257031:add department '{"name":"Music"}'
+1691563272212:show count of employees for Music
+1691565009162:who is head of department Biology
+1691565016203:who is head of department BiologyÑ–Ñ–Ñ–
+1691565027315:show statistics of Biology
+1691565032376:show statistics of BiologyÑ–Ñ–Ñ–
+1691565046501:show the average salary for the department Biology
+1691565050541:show the average salary for the department BiologyÑ–Ñ–Ñ–
+1691565166696:show the average salary for the department Biology
+1691565236279:show count of employees for Biology
+1691565241324:show count of employees for Biologyssss
+1691565281743:global search by van
+1691565289843:global search by ba
+1691566530326:add lector to Math '{"fullName":"Butch Birimarro","degree":"PROFESSOR","salary":82.2,"isHead": true}'
+1691566557611:add lector to Math '{"fullName":"Butch Birimarro","degree":"PROFESSOR","salary":82.2,"isHead": false}'
+1691567353360:add department '{"name":"Economy"}'
+1691567397773:add lector to Economy '{"fullName":"Alfred Aquantasis","degree":"ASSISTANT","salary":22.2,"isHead": false}'
+1691567417930:show head of Biology
+1691567429067:show head of Economy
+1691567444211:show head of Physic
+1691567463403:show statistics of Biology
+1691567470479:show statistics of Economy
+1691567483619:show the average salary for Biology
+1691567495742:show the average salary for Economy
+1691567515937:show count of employees for Biology
+1691567526056:show count of employees for Economy
+1691567555319:global search by ca
