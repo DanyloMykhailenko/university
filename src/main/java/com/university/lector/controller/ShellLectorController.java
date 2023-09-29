@@ -8,6 +8,7 @@ import org.springframework.shell.command.annotation.ExceptionResolver;
 import org.springframework.shell.context.InteractionMode;
 import org.springframework.stereotype.Component;
 
+import com.university.lector.dto.GlobalSearchRequest;
 import com.university.lector.dto.LectorResponse;
 import com.university.lector.exception.NoMatchingLectorsNamesException;
 import com.university.lector.service.LectorService;
@@ -25,7 +26,6 @@ public class ShellLectorController implements LectorController {
 
     private final LectorService lectorService;
 
-    @Override
     @Command(command = "global search by",
             group = LECTORS_MANIPULATIONS_GROUP,
             description = """
@@ -33,7 +33,12 @@ public class ShellLectorController implements LectorController {
                     Example: global search by van
                     """)
     public Set<LectorResponse> globalSearch(String template) {
-        return lectorService.globalSearchByName(template);
+        return globalSearch(new GlobalSearchRequest(template));
+    }
+
+    @Override
+    public Set<LectorResponse> globalSearch(GlobalSearchRequest globalSearchRequest) {
+        return lectorService.globalSearchByName(globalSearchRequest);
     }
 
     @ExceptionResolver(NoMatchingLectorsNamesException.class)

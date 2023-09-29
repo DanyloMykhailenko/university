@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.university.department.dto.AddLectorToDepartmentRequest;
 import com.university.department.dto.AverageSalaryResponse;
 import com.university.department.dto.CountOfEmployeesResponse;
 import com.university.department.dto.DepartmentRequest;
@@ -46,29 +47,30 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     @Transactional
-    public LectorResponse addLectorToDepartment(String departmentName, LectorRequest lectorRequest) {
-        Department department = departmentRepository.findByName(departmentName)
-                .orElseThrow(() -> new DepartmentNotFoundException(departmentName));
+    public LectorResponse addLectorToDepartment(AddLectorToDepartmentRequest addLectorToDepartmentRequest) {
+        Department department = departmentRepository.findByName(addLectorToDepartmentRequest.departmentName())
+                .orElseThrow(() -> new DepartmentNotFoundException(addLectorToDepartmentRequest.departmentName()));
+        LectorRequest lectorRequest = addLectorToDepartmentRequest.lector();
         Lector lector = new Lector(lectorRequest.degree(), lectorRequest.salary(), lectorRequest.fullName());
         department.addLector(lectorRepository.save(lector), lectorRequest.isHead());
         return new LectorResponse(lector.getId(), lector.getFullName(), true);
     }
 
     @Override
-    public HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(String departmentName) {
-        if (!departmentRepository.existsByName(departmentName)) {
-            throw new DepartmentNotFoundException(departmentName);
+    public HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(DepartmentRequest departmentRequest) {
+        if (!departmentRepository.existsByName(departmentRequest.name())) {
+            throw new DepartmentNotFoundException(departmentRequest.name());
         }
-        return lectorRepository.getHeadOfDepartmentByDepartmentName(departmentName)
-                .orElseThrow(() -> new DepartmentHasNoHeadException(departmentName));
+        return lectorRepository.getHeadOfDepartmentByDepartmentName(departmentRequest.name())
+                .orElseThrow(() -> new DepartmentHasNoHeadException(departmentRequest.name()));
     }
 
     @Override
-    public Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName) {
-        if (!departmentRepository.existsByName(departmentName)) {
-            throw new DepartmentNotFoundException(departmentName);
+    public Set<DepartmentStatisticResponse> getDepartmentStatistics(DepartmentRequest departmentRequest) {
+        if (!departmentRepository.existsByName(departmentRequest.name())) {
+            throw new DepartmentNotFoundException(departmentRequest.name());
         }
-        Set<DepartmentStatisticResponse> responseSet = new HashSet<>(lectorRepository.getDepartmentStatistics(departmentName)) {
+        Set<DepartmentStatisticResponse> responseSet = new HashSet<>(lectorRepository.getDepartmentStatistics(departmentRequest.name())) {
             @Override
             public String toString() {
                 return this.stream()
@@ -81,19 +83,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public AverageSalaryResponse getAverageSalary(String departmentName) {
-        if (!departmentRepository.existsByName(departmentName)) {
-            throw new DepartmentNotFoundException(departmentName);
+    public AverageSalaryResponse getAverageSalary(DepartmentRequest departmentRequest) {
+        if (!departmentRepository.existsByName(departmentRequest.name())) {
+            throw new DepartmentNotFoundException(departmentRequest.name());
         }
-        return lectorRepository.getAverageSalary(departmentName);
+        return lectorRepository.getAverageSalary(departmentRequest.name());
     }
 
     @Override
-    public CountOfEmployeesResponse getCountOfEmployee(String departmentName) {
-        if (!departmentRepository.existsByName(departmentName)) {
-            throw new DepartmentNotFoundException(departmentName);
+    public CountOfEmployeesResponse getCountOfEmployee(DepartmentRequest departmentRequest) {
+        if (!departmentRepository.existsByName(departmentRequest.name())) {
+            throw new DepartmentNotFoundException(departmentRequest.name());
         }
-        return lectorRepository.getCountOfEmployee(departmentName);
+        return lectorRepository.getCountOfEmployee(departmentRequest.name());
     }
 
 }

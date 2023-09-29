@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.university.department.dto.AddLectorToDepartmentRequest;
 import com.university.department.dto.AverageSalaryResponse;
 import com.university.department.dto.CountOfEmployeesResponse;
 import com.university.department.dto.DepartmentRequest;
@@ -38,7 +39,6 @@ public class ShellDepartmentController implements DepartmentController {
     private final DepartmentService departmentService;
     private final ObjectMapper mapper;
 
-    @Override
     @Command(command = "add department",
             group = DEPARTMENTS_MANIPULATIONS_GROUP,
             description = """
@@ -47,10 +47,14 @@ public class ShellDepartmentController implements DepartmentController {
                    """)
     public DepartmentResponse addDepartment(String departmentRequestJson) throws JsonProcessingException {
         DepartmentRequest departmentRequest = mapper.readValue(departmentRequestJson, DepartmentRequest.class);
-        return departmentService.addDepartment(departmentRequest);
+        return addDepartment(departmentRequest);
     }
 
     @Override
+    public DepartmentResponse addDepartment(DepartmentRequest departmentRequest) {
+        return departmentService.addDepartment(departmentRequest);
+    }
+
     @Command(command = "add lector to",
             group = LECTORS_MANIPULATIONS_GROUP,
             description = """
@@ -59,10 +63,14 @@ public class ShellDepartmentController implements DepartmentController {
                    """)
     public LectorResponse addLectorToDepartment(String departmentName, String lectorRequestJson) throws JsonProcessingException {
         LectorRequest lectorRequest = mapper.readValue(lectorRequestJson, LectorRequest.class);
-        return departmentService.addLectorToDepartment(departmentName, lectorRequest);
+        return addLectorToDepartment(new AddLectorToDepartmentRequest(departmentName, lectorRequest));
     }
 
     @Override
+    public LectorResponse addLectorToDepartment(AddLectorToDepartmentRequest addLectorToDepartmentRequest) {
+        return departmentService.addLectorToDepartment(addLectorToDepartmentRequest);
+    }
+
     @Command(command = "show head of",
             group = DEPARTMENTS_MANIPULATIONS_GROUP,
             description = """
@@ -70,10 +78,14 @@ public class ShellDepartmentController implements DepartmentController {
                    Example: show head of Biology
                    """)
     public HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(String departmentName) {
-        return departmentService.getHeadOfDepartmentByDepartmentName(departmentName);
+        return getHeadOfDepartmentByDepartmentName(new DepartmentRequest(departmentName));
     }
 
     @Override
+    public HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(DepartmentRequest departmentRequest) {
+        return departmentService.getHeadOfDepartmentByDepartmentName(departmentRequest);
+    }
+
     @Command(command = "show statistics of",
             group = DEPARTMENTS_MANIPULATIONS_GROUP,
             description = """
@@ -81,10 +93,14 @@ public class ShellDepartmentController implements DepartmentController {
                    Example: show statistics of Biology
                    """)
     public Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName) {
-        return departmentService.getDepartmentStatistics(departmentName);
+        return getDepartmentStatistics(new DepartmentRequest(departmentName));
     }
 
     @Override
+    public Set<DepartmentStatisticResponse> getDepartmentStatistics(DepartmentRequest departmentRequest) {
+        return departmentService.getDepartmentStatistics(departmentRequest);
+    }
+
     @Command(command = "show the average salary for",
             group = DEPARTMENTS_MANIPULATIONS_GROUP,
             description = """
@@ -92,10 +108,14 @@ public class ShellDepartmentController implements DepartmentController {
                    Example: show the average salary for Biology
                    """)
     public AverageSalaryResponse getAverageSalary(String departmentName) {
-        return departmentService.getAverageSalary(departmentName);
+        return getAverageSalary(new DepartmentRequest(departmentName));
     }
 
     @Override
+    public AverageSalaryResponse getAverageSalary(DepartmentRequest departmentRequest) {
+        return departmentService.getAverageSalary(departmentRequest);
+    }
+
     @Command(command = "show count of employees for",
             group = DEPARTMENTS_MANIPULATIONS_GROUP,
             description = """
@@ -103,7 +123,12 @@ public class ShellDepartmentController implements DepartmentController {
                    Example: show count of employees for Biology
                    """)
     public CountOfEmployeesResponse getCountOfEmployees(String departmentName) {
-        return departmentService.getCountOfEmployee(departmentName);
+        return getCountOfEmployees(new DepartmentRequest(departmentName));
+    }
+
+    @Override
+    public CountOfEmployeesResponse getCountOfEmployees(DepartmentRequest departmentRequest) {
+        return departmentService.getCountOfEmployee(departmentRequest);
     }
 
     @ExceptionResolver({DepartmentNotFoundException.class, DepartmentHasNoHeadException.class})

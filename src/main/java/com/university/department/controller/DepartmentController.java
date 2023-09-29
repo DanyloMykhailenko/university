@@ -2,25 +2,27 @@ package com.university.department.controller;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.university.department.dto.AddLectorToDepartmentRequest;
 import com.university.department.dto.AverageSalaryResponse;
 import com.university.department.dto.CountOfEmployeesResponse;
+import com.university.department.dto.DepartmentRequest;
 import com.university.department.dto.DepartmentResponse;
 import com.university.department.dto.DepartmentStatisticResponse;
 import com.university.department.dto.HeadOfDepartmentResponse;
+import com.university.lector.dto.LectorRequest;
 import com.university.lector.dto.LectorResponse;
 
 public interface DepartmentController {
 
-    DepartmentResponse addDepartment(String departmentRequestJson) throws JsonProcessingException;
+    DepartmentResponse addDepartment(DepartmentRequest departmentRequest);
 
-    LectorResponse addLectorToDepartment(String departmentName, String lectorRequestJson) throws JsonProcessingException;
+    LectorResponse addLectorToDepartment(AddLectorToDepartmentRequest addLectorToDepartmentRequest);
 
-    HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(String departmentName);
+    HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(DepartmentRequest departmentRequest);
 
-    Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName);
+    Set<DepartmentStatisticResponse> getDepartmentStatistics(DepartmentRequest departmentRequest);
 
-    AverageSalaryResponse getAverageSalary(String departmentName);
+    AverageSalaryResponse getAverageSalary(DepartmentRequest departmentRequest);
 
-    CountOfEmployeesResponse getCountOfEmployees(String departmentName);
+    CountOfEmployeesResponse getCountOfEmployees(DepartmentRequest departmentRequest);
 }

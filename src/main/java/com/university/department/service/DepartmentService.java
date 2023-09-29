@@ -2,6 +2,7 @@ package com.university.department.service;
 
 import java.util.Set;
 
+import com.university.department.dto.AddLectorToDepartmentRequest;
 import com.university.department.dto.AverageSalaryResponse;
 import com.university.department.dto.CountOfEmployeesResponse;
 import com.university.department.dto.DepartmentRequest;
@@ -15,14 +16,14 @@ public interface DepartmentService {
 
     DepartmentResponse addDepartment(DepartmentRequest departmentRequest);
 
-    LectorResponse addLectorToDepartment(String departmentName, LectorRequest readValue);
+    LectorResponse addLectorToDepartment(AddLectorToDepartmentRequest addLectorToDepartmentRequest);
 
-    HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(String departmentName);
+    HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(DepartmentRequest departmentRequest);
 
-    Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName);
+    Set<DepartmentStatisticResponse> getDepartmentStatistics(DepartmentRequest departmentRequest);
 
-    AverageSalaryResponse getAverageSalary(String departmentName);
+    AverageSalaryResponse getAverageSalary(DepartmentRequest departmentRequest);
 
-    CountOfEmployeesResponse getCountOfEmployee(String departmentName);
+    CountOfEmployeesResponse getCountOfEmployee(DepartmentRequest departmentRequest);
 
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.university.lector.dto.GlobalSearchRequest;
 import com.university.lector.dto.LectorResponse;
 import com.university.lector.exception.NoMatchingLectorsNamesException;
 import com.university.lector.model.Lector;
@@ -20,10 +21,10 @@ public class LectorServiceImpl implements LectorService {
     private final LectorRepository lectorRepository;
 
     @Override
-    public Set<LectorResponse> globalSearchByName(String template) {
-        Set<Lector> lectors = lectorRepository.findByFullNameIgnoringCaseContaining(template);
+    public Set<LectorResponse> globalSearchByName(GlobalSearchRequest globalSearchRequest) {
+        Set<Lector> lectors = lectorRepository.findByFullNameIgnoringCaseContaining(globalSearchRequest.template());
         if (lectors.isEmpty()) {
-            throw new NoMatchingLectorsNamesException(template);
+            throw new NoMatchingLectorsNamesException(globalSearchRequest.template());
         }
         return lectors.stream()
                 .map(lector -> new LectorResponse(lector.getId(), lector.getFullName(), false))
