@@ -1,6 +1,6 @@
 package com.university.department.service;
 
-import java.util.List;
+import java.util.Set;
 
 import com.university.department.dto.AverageSalaryResponse;
 import com.university.department.dto.CountOfEmployeesResponse;
@@ -19,7 +19,7 @@ public interface DepartmentService {
 
     HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(String departmentName);
 
-    List<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName);
+    Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName);
 
     AverageSalaryResponse getAverageSalary(String departmentName);
 

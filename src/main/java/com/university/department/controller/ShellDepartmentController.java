@@ -2,9 +2,7 @@ package com.university.department.controller;
 
 import static com.university.lector.controller.ShellLectorController.LECTORS_MANIPULATIONS_GROUP;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.shell.command.CommandHandlingResult;
 import org.springframework.shell.command.annotation.Command;
@@ -25,7 +23,6 @@ import com.university.department.exception.DepartmentNotFoundException;
 import com.university.department.service.DepartmentService;
 import com.university.lector.dto.LectorRequest;
 import com.university.lector.dto.LectorResponse;
-import com.university.lector.model.Degree;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,11 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ShellDepartmentController implements DepartmentController {
 
     private static final String DEPARTMENTS_MANIPULATIONS_GROUP = "Departments manipulations";
-    private static final Set<DepartmentStatisticResponse> DEFAULT_STATISTICS = Set.of(
-            new DepartmentStatisticResponse(Degree.ASSISTANT, 0L),
-            new DepartmentStatisticResponse(Degree.ASSOCIATE_PROFESSOR, 0L),
-            new DepartmentStatisticResponse(Degree.PROFESSOR, 0L)
-    );
 
     private final DepartmentService departmentService;
     private final ObjectMapper mapper;
@@ -89,16 +81,7 @@ public class ShellDepartmentController implements DepartmentController {
                    Example: show statistics of Biology
                    """)
     public Set<DepartmentStatisticResponse> getDepartmentStatistics(String departmentName) {
-        Set<DepartmentStatisticResponse> responseSet = new HashSet<>(departmentService.getDepartmentStatistics(departmentName)) {
-            @Override
-            public String toString() {
-                return this.stream()
-                        .map(DepartmentStatisticResponse::toString)
-                        .collect(Collectors.joining("\n"));
-            }
-        };
-        responseSet.addAll(DEFAULT_STATISTICS);
-        return responseSet;
+        return departmentService.getDepartmentStatistics(departmentName);
     }
 
     @Override

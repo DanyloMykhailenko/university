@@ -1,6 +1,5 @@
 package com.university.lector.repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -41,7 +40,7 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
             JOIN positions.department department
             WHERE department.name = :departmentName
             GROUP BY lector.degree""")
-    List<DepartmentStatisticResponse> getDepartmentStatistics(@Param("departmentName") String departmentName);
+    Set<DepartmentStatisticResponse> getDepartmentStatistics(@Param("departmentName") String departmentName);
 
     //language=sql
     @Query("""

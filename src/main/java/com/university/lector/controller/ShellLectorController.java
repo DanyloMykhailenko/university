@@ -1,8 +1,6 @@
 package com.university.lector.controller;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.shell.command.CommandHandlingResult;
 import org.springframework.shell.command.annotation.Command;
@@ -35,14 +33,7 @@ public class ShellLectorController implements LectorController {
                     Example: global search by van
                     """)
     public Set<LectorResponse> globalSearch(String template) {
-        return new HashSet<>(lectorService.globalSearchByName(template)) {
-            @Override
-            public String toString() {
-                return this.stream()
-                        .map(LectorResponse::toString)
-                        .collect(Collectors.joining(", "));
-            }
-        };
+        return lectorService.globalSearchByName(template);
     }
 
     @ExceptionResolver(NoMatchingLectorsNamesException.class)

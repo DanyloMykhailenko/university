@@ -1,5 +1,6 @@
 package com.university.lector.service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,14 @@ public class LectorServiceImpl implements LectorService {
         }
         return lectors.stream()
                 .map(lector -> new LectorResponse(lector.getId(), lector.getFullName(), false))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(() -> new HashSet<>() {
+                    @Override
+                    public String toString() {
+                        return this.stream()
+                                .map(LectorResponse::toString)
+                                .collect(Collectors.joining(", "));
+                    }
+                }));
     }
 
 }
