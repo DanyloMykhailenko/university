@@ -19,7 +19,7 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
 
     //language=sql
     @Query("""
-            SELECT new com.university.department.dto.HeadOfDepartmentResponse(
+            SELECT new HeadOfDepartmentResponse(
             :departmentName AS departmentName,
             lector.id AS lectorId,
             lector.fullName AS lectorFullName)
@@ -32,7 +32,7 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
 
     //language=sql
     @Query("""
-            SELECT new com.university.department.dto.DepartmentStatisticResponse(
+            SELECT new DepartmentStatisticResponse(
             lector.degree AS degree,
             count(lector) AS lectorsCount)
             FROM Lector lector
@@ -44,7 +44,7 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
 
     //language=sql
     @Query("""
-            SELECT new com.university.department.dto.AverageSalaryResponse(
+            SELECT new AverageSalaryResponse(
             :departmentName AS departmentName,
             avg(lector.salary) AS averageSalary)
             FROM Lector lector
@@ -55,7 +55,7 @@ public interface LectorRepository extends JpaRepository<Lector, Long> {
 
     //language=sql
     @Query("""
-            SELECT new com.university.department.dto.CountOfEmployeesResponse(
+            SELECT new CountOfEmployeesResponse(
             :departmentName AS departmentName,
             count(lector) AS countOfEmployees)
             FROM Lector lector
