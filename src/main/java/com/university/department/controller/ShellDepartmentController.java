@@ -19,6 +19,7 @@ import com.university.department.dto.DepartmentRequest;
 import com.university.department.dto.DepartmentResponse;
 import com.university.department.dto.DepartmentStatisticResponse;
 import com.university.department.dto.HeadOfDepartmentResponse;
+import com.university.department.exception.DepartmentAlreadyHasHeadException;
 import com.university.department.exception.DepartmentHasNoHeadException;
 import com.university.department.exception.DepartmentNotFoundException;
 import com.university.department.service.DepartmentService;
@@ -131,7 +132,7 @@ public class ShellDepartmentController implements DepartmentController {
         return departmentService.getCountOfEmployee(departmentRequest);
     }
 
-    @ExceptionResolver({DepartmentNotFoundException.class, DepartmentHasNoHeadException.class})
+    @ExceptionResolver({DepartmentNotFoundException.class, DepartmentHasNoHeadException.class, DepartmentAlreadyHasHeadException.class})
     public CommandHandlingResult handleDepartmentException(Exception exception) {
         CommandHandlingResult result = CommandHandlingResult.of("Error: " + exception.getMessage());
         log.error(result.message());

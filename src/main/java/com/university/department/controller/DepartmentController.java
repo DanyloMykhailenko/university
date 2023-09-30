@@ -9,7 +9,6 @@ import com.university.department.dto.DepartmentRequest;
 import com.university.department.dto.DepartmentResponse;
 import com.university.department.dto.DepartmentStatisticResponse;
 import com.university.department.dto.HeadOfDepartmentResponse;
-import com.university.lector.dto.LectorRequest;
 import com.university.lector.dto.LectorResponse;
 
 public interface DepartmentController {

@@ -14,6 +14,7 @@ import com.university.department.dto.DepartmentRequest;
 import com.university.department.dto.DepartmentResponse;
 import com.university.department.dto.DepartmentStatisticResponse;
 import com.university.department.dto.HeadOfDepartmentResponse;
+import com.university.department.exception.DepartmentAlreadyHasHeadException;
 import com.university.department.exception.DepartmentHasNoHeadException;
 import com.university.department.exception.DepartmentNotFoundException;
 import com.university.department.model.Department;
@@ -45,17 +46,22 @@ public class DepartmentServiceImpl implements DepartmentService {
         return new DepartmentResponse(department.getId(), department.getName());
     }
 
-    @Override
     @Transactional
+    @Override
     public LectorResponse addLectorToDepartment(AddLectorToDepartmentRequest addLectorToDepartmentRequest) {
         Department department = departmentRepository.findByName(addLectorToDepartmentRequest.departmentName())
                 .orElseThrow(() -> new DepartmentNotFoundException(addLectorToDepartmentRequest.departmentName()));
+        if (addLectorToDepartmentRequest.lector().isHead()
+                && lectorRepository.getHeadOfDepartmentByDepartmentName(addLectorToDepartmentRequest.departmentName()).isPresent()) {
+            throw new DepartmentAlreadyHasHeadException(addLectorToDepartmentRequest.departmentName());
+        }
         LectorRequest lectorRequest = addLectorToDepartmentRequest.lector();
         Lector lector = new Lector(lectorRequest.degree(), lectorRequest.salary(), lectorRequest.fullName());
         department.addLector(lectorRepository.save(lector), lectorRequest.isHead());
         return new LectorResponse(lector.getId(), lector.getFullName(), true);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public HeadOfDepartmentResponse getHeadOfDepartmentByDepartmentName(DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsByName(departmentRequest.name())) {
@@ -65,6 +71,7 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() -> new DepartmentHasNoHeadException(departmentRequest.name()));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Set<DepartmentStatisticResponse> getDepartmentStatistics(DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsByName(departmentRequest.name())) {
@@ -82,6 +89,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return responseSet;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public AverageSalaryResponse getAverageSalary(DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsByName(departmentRequest.name())) {
@@ -90,6 +98,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return lectorRepository.getAverageSalary(departmentRequest.name());
     }
 
+    @Transactional(readOnly = true)
     @Override
     public CountOfEmployeesResponse getCountOfEmployee(DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsByName(departmentRequest.name())) {
